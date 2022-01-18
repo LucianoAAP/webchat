@@ -1,16 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <title>CHAT</title>
   </head>
   <body>
-    <ul class="messages">
-    </ul>
-    <form>
-      <input id="messageInput" />
-      <button>Send</button>
+    <ul id="nicknames"></ul>
+    <form id="nicknameForm">
+      <input id="nicknameInput" data-testid="nickname-box" />
+      <button data-testid="nickname-button">Change Nickname</button>
+    </form>
+    <ul id="messages"></ul>
+    <form id="messageForm">
+      <input id="messageInput" data-testid="message-box" />
+      <button data-testid="send-button">Send</button>
     </form>
     <script src="/socket.io/socket.io.js"></script>
-    <script src='./js/chat.js'></script>
+    <script src="./js/chat.js"></script>
   </body>
 </html>
