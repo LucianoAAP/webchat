@@ -9,7 +9,11 @@
       <input id="nicknameInput" data-testid="nickname-box" />
       <button data-testid="nickname-button">Change Nickname</button>
     </form>
-    <ul id="messages"></ul>
+    <ul id="messages">
+      <% history.forEach((entry) => { %>
+        <li><%=entry.timestamp%> - <%=entry.nickname%>: <%=entry.chatMessage%></li>
+      <% }) %>
+    </ul>
     <form id="messageForm">
       <input id="messageInput" data-testid="message-box" />
       <button data-testid="send-button">Send</button>
