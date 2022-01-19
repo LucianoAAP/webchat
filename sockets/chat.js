@@ -1,6 +1,8 @@
 const crypto = require('crypto');
 const historyModel = require('../models/history');
 
+const clients = [];
+
 const createDate = () => {
   const date = new Date();
   const year = date.getFullYear();
@@ -13,14 +15,21 @@ const createDate = () => {
 };
 
 module.exports = (io) => io.on('connection', (socket) => {
-  const newNickname = crypto.randomBytes(8).toString('hex');
-  socket.emit('connection', { nickname: newNickname, id: socket.id });
+  const randomNickName = crypto.randomBytes(8).toString('hex');
+  clients.push({ id: socket.id, nickname: randomNickName });
+  io.emit('changeOfClients', clients);
   socket.on('message', async ({ nickname, chatMessage }) => {
     const timestamp = createDate();
-    io.emit('message', `${createDate()} - ${nickname}: ${chatMessage}`);
     await historyModel.create({ message: chatMessage, nickname, timestamp });
+    io.emit('message', `${createDate()} - ${nickname}: ${chatMessage}`);
   });
   socket.on('changeNickname', (nickname) => {
-    io.emit('changeNickname', { id: socket.id, newNickname: nickname });
+    clients.splice(clients.indexOf(clients.find((client) => client.id === socket.id)), 1);
+    clients.push({ id: socket.id, nickname });
+    io.emit('changeOfClients', clients);
+  });
+  socket.on('disconnect', () => {
+    clients.splice(clients.indexOf(clients.find((client) => client.id === socket.id)), 1);
+    socket.broadcast.emit('changeOfClients', clients);
   });
 });
