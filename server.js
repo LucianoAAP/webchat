@@ -2,16 +2,22 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-const http = require('http').createServer(app);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-const io = require('socket.io')(http, {
+const http = require('http');
+const socket = require('socket.io');
+
+const server = http.createServer(app);
+
+const io = socket(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:3000/',
     methods: ['GET', 'POST'],
   },
 });
 
-const chatController = require('./controllers');
+const errorMiddleware = require('./middlewares/error');
 
 app.use(express.static(path.join(__dirname, '/views')));
 
@@ -21,10 +27,12 @@ app.set('view engine', 'ejs');
 
 app.set('views', './views');
 
-app.get('/', chatController.showMessages);
+app.use('/', require('./routers'));
+
+app.use(errorMiddleware);
 
 const PORT = process.env.PORT || 3000;
 
-http.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Servidor ouvindo na porta ${PORT}`);
 });
