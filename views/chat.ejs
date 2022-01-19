@@ -7,11 +7,13 @@
   <body>
     <div class="content">
       <div class="nickname-field">
-        <form id="nickname-form">
-          <input id="nickname-input" data-testid="nickname-box" placeholder="Change nickname" />
-          <button data-testid="nickname-button">Save</button>
+        <h1>Superchat!</h1>
+        <form id="nickname-form" class="nickname-form">
+          <input id="nickname-input" class="nickname-input" data-testid="nickname-box"
+          placeholder="Change nickname" />
+          <button class="nickname-button" data-testid="nickname-button">Save</button>
         </form>
-        <ul id="nicknames"></ul>
+        <ul id="nicknames" class="nicknames"></ul>
       </div>
       <ul id="messages" class="messages">
         <% history.forEach((entry) => { %>
