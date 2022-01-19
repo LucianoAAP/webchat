@@ -2,22 +2,27 @@
 <html>
   <head>
     <title>CHAT</title>
+    <link rel="stylesheet" href="./css/chat.css">
   </head>
   <body>
-    <ul id="nicknames"></ul>
-    <form id="nicknameForm">
-      <input id="nicknameInput" data-testid="nickname-box" />
-      <button data-testid="nickname-button">Change Nickname</button>
-    </form>
-    <ul id="messages">
-      <% history.forEach((entry) => { %>
-        <li><%=entry.timestamp%> - <%=entry.nickname%>: <%=entry.chatMessage%></li>
-      <% }) %>
-    </ul>
-    <form id="messageForm">
-      <input id="messageInput" data-testid="message-box" />
-      <button data-testid="send-button">Send</button>
-    </form>
+    <div class="content">
+      <div class="nickname-field">
+        <form id="nickname-form">
+          <input id="nickname-input" data-testid="nickname-box" placeholder="Change nickname" />
+          <button data-testid="nickname-button">Save</button>
+        </form>
+        <ul id="nicknames"></ul>
+      </div>
+      <ul id="messages" class="messages">
+        <% history.forEach((entry) => { %>
+          <li><%=entry.timestamp%> - <%=entry.nickname%>: <%=entry.message%></li>
+          <% }) %>
+      </ul>
+      <form id="message-form" class="message-form">
+        <input id="message-input" class="message-input" data-testid="message-box" />
+        <button class="send-button" data-testid="send-button">Send</button>
+      </form>
+    </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="./js/chat.js"></script>
   </body>

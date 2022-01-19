@@ -1,0 +1,46 @@
+body {
+  height: 500px;
+  margin: auto;
+}
+
+.message-form {
+  bottom: 5px;
+  height: 50px;
+  position: fixed;
+  width: 100%;
+}
+
+.message-input {
+  font-size: 30px;
+  height: 40px;
+  margin-left: 0.5%;
+  vertical-align: middle;
+  width: 80%;
+}
+
+.send-button {
+  height: 40px;
+  vertical-align: middle;
+  width: 15%;
+}
+
+.content {
+  display: flex;
+  height: 450px;
+}
+
+.nickname-field {
+  margin-left: 0.5%;
+  margin-top: 1%;
+  overflow-y: auto;
+  width: 25%;
+}
+
+.messages {
+  overflow-y: auto;
+  width: 75%;
+}
+
+.messages , li {
+  position: relative;
+}

@@ -1,9 +1,9 @@
 const socket = window.io();
 
-const messageForm = document.querySelector('#messageForm');
-const nicknameForm = document.querySelector('#nicknameForm');
-const messageInput = document.querySelector('#messageInput');
-const nicknameInput = document.querySelector('#nicknameInput');
+const messageForm = document.querySelector('#message-form');
+const nicknameForm = document.querySelector('#nickname-form');
+const messageInput = document.querySelector('#message-input');
+const nicknameInput = document.querySelector('#nickname-input');
 const nicknamesUl = document.querySelector('#nicknames');
 
 messageForm.addEventListener('submit', (e) => {
