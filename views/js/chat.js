@@ -5,6 +5,7 @@ const nicknameForm = document.querySelector('#nickname-form');
 const messageInput = document.querySelector('#message-input');
 const nicknameInput = document.querySelector('#nickname-input');
 const nicknamesUl = document.querySelector('#nicknames');
+const messagesUl = document.querySelector('#messages');
 
 messageForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -24,7 +25,6 @@ nicknameForm.addEventListener('submit', (e) => {
 });
 
 const createMessage = (message) => {
-  const messagesUl = document.querySelector('#messages');
   const li = document.createElement('li');
   li.setAttribute('data-testid', 'message');
   li.innerText = message;
@@ -39,16 +39,17 @@ const createNickname = ({ nickname, id }) => {
   nicknamesUl.appendChild(li);
 };
 
-socket.on('changeOfClients', (clients) => {
+const changeClients = (clients) => {
   const sortedClients = [clients.find((client) => client.id === socket.id),
     ...clients.filter((client) => client.id !== socket.id)];
   const { nickname } = clients.find((client) => client.id === socket.id);
   sessionStorage.setItem('nickname', nickname);
   nicknamesUl.innerHTML = '';
   sortedClients.forEach(createNickname);
-});
+};
 
-socket.on('message', (message) => createMessage(message));
+socket.on('changeOfClients', changeClients);
+socket.on('message', createMessage);
 
 window.onbeforeunload = (_event) => {
   socket.disconnect();
