@@ -15,8 +15,10 @@
       </div>
       <ul id="messages" class="messages">
         <% history.forEach((entry) => { %>
-          <li><%=entry.timestamp%> - <%=entry.nickname%>: <%=entry.message%></li>
-          <% }) %>
+          <li data-testid="message">
+            <%=entry.timestamp%> - <%=entry.nickname%>: <%=entry.message%>
+          </li>
+        <% }) %>
       </ul>
       <form id="message-form" class="message-form">
         <input id="message-input" class="message-input" data-testid="message-box" />
