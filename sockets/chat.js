@@ -24,8 +24,7 @@ const createMessage = (socket, io) => {
 
 const changeNickname = (socket, io) => {
   socket.on('changeNickname', (nickname) => {
-    clients.splice(clients.indexOf(clients.find((client) => client.id === socket.id)), 1);
-    clients.push({ id: socket.id, nickname });
+    clients[clients.indexOf(clients.find((client) => client.id === socket.id))].nickname = nickname;
     io.emit('changeOfClients', clients);
   });
 };
