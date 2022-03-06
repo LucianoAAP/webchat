@@ -14,7 +14,7 @@ This is a slightly modified version of a project I had to develop during my stud
 
 ## Prerequisites
 
-This project requires the "NPM" package and MongoDB
+This application requires the "NPM" package and "MongoDB"
 
 ## Installation
 
