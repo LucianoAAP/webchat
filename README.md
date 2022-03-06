@@ -12,7 +12,9 @@ This is a slightly modified version of a project I had to develop during my stud
 
 # Getting started
 
-This project requires Node.js and MongoDB.
+## Prerequisites
+
+This project requires the "NPM" package and MongoDB
 
 ## Installation
 
@@ -29,3 +31,11 @@ This project requires Node.js and MongoDB.
 - `sudo service mongod start`
 2. Then, just run the application
 - `npm start`
+
+# Contact
+
+## Luciano Almeida
+
+- Linkedin: https://www.linkedin.com/in/lucianoaap/
+- Github: https://www.linkedin.com/in/lucianoaap/
+- Email: lucianoalmeidaap@gmail.com
